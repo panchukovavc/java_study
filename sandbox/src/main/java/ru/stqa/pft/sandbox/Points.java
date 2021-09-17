@@ -12,4 +12,7 @@ public class Points {
     this.p3 = p3;
     this.p4 = p4;
   }
+  public  double distance() {//преобразуем функцию в метод через ключевое слово this
+    return Math.sqrt((this.p3-this.p1)*(this.p3-this.p1)+(this.p4-this.p2)*(this.p4-this.p2));
+  }
 }
