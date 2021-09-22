@@ -6,8 +6,9 @@ import org.testng.annotations.Test;
 public class PointTests {
   @Test
   public void testDistance(){
-    Points p = new Points (0,1,2,1);
-    Assert.assertEquals(p.distance(),2.0);
+    Points p1 = new Points (10,10);
+    Points p2 = new Points(2,4);
+    Assert.assertEquals(p1.distance(p2),10.0);
 
   }
 }
