@@ -1,10 +1,11 @@
 package ru.stqa.pft.sandbox;
 
 public class Point {
-  public static void main(String[] args) {//запускаемый класс,содержащий функцию
+  public static void main(String[] args) {
 
-Points p = new Points (0,1,2,3); //создаем объект типа Points
-    System.out.println("Расстояние между двумя точками =" + p.distance());//используем метод в классе Points
+Points p1 = new Points (0,5);
+Points p2 = new Points (5,8);
+    System.out.println("Расстояние между двумя точками =" + p1.distance(p2));
   }
 
 

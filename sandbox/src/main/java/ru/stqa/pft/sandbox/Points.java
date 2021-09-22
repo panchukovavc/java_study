@@ -1,18 +1,16 @@
 package ru.stqa.pft.sandbox;
 
 public class Points {
-  public double p1;
-  public double p2;
-  public double p3;
-  public double p4;
+  public double x;
+  public double y;
 
-  public Points(double p1, double p2, double p3, double p4) {
-    this.p1 = p1;
-    this.p2 = p2;
-    this.p3 = p3;
-    this.p4 = p4;
+
+  public Points(double x1,double y2) {
+    this.x = x1;
+    this.y = y2;
+
   }
-  public  double distance() {//преобразуем функцию в метод через ключевое слово this
-    return Math.sqrt((this.p3-this.p1)*(this.p3-this.p1)+(this.p4-this.p2)*(this.p4-this.p2));
+  public  double distance(Points p2) {
+    return Math.sqrt((p2.x-this.x)*(p2.x-this.x)+(p2.y-this.y)*(p2.y-this.y));
   }
 }
