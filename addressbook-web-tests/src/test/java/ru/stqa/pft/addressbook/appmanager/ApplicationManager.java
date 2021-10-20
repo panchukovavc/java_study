@@ -29,9 +29,9 @@ public class ApplicationManager {
       } else if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
       } else if (browser.equals (BrowserType.EDGE)) {
+        System.setProperty("webdriver.edge.driver","C:\\Tools\\msedgedriver.exe");
         wd = new EdgeDriver();
       }
-
       wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
       wd.get("http://localhost/addressbook/");
       groupHelper = new GroupHelper(wd);
@@ -41,8 +41,6 @@ public class ApplicationManager {
       sessionHelper.login("admin", "secret");
 
   }
-
-
 
   public void stop() {
     wd.quit();
@@ -56,8 +54,6 @@ public class ApplicationManager {
       return false;
     }
   }
-
-
 
   public GroupHelper getGroupHelper() {
     return groupHelper;
