@@ -29,4 +29,17 @@ public class ContactHelper extends HelperBase {
   public void gotoAddNewPage() {
     click(By.linkText("add new"));
   }
+
+  public void createContact(ContactData contact) {
+    gotoAddNewPage();
+    fillContactForm(contact);
+    submitContactCreation();
+    returnToContactPage();
+
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+
+  }
 }
