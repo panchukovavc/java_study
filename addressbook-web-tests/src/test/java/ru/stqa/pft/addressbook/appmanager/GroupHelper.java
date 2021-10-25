@@ -59,4 +59,7 @@ public class GroupHelper extends HelperBase {
 
   }
 
+  public int getGroupCount() {
+    return wd.findElements(By.name("selected[]")).size(); //wd.findElements возвращает список эл-ов. size возвращ размер списка.
+  }
 }
