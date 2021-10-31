@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
- //private WebDriver wd;
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -56,7 +55,12 @@ public class ContactHelper extends HelperBase {
     List <WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
       List<WebElement> cells = element.findElements(By.tagName("td"));
-      ContactData contact = new ContactData("firstname", "lastname", null, null);
+      int lastNameNum = 1;
+      int firstNameNum = 2;
+      String lastname = cells.get(lastNameNum).getText();
+      String firstname = cells.get(firstNameNum).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData(id, firstname, lastname, null, null);
       contacts.add(contact);
     }
     return contacts;
