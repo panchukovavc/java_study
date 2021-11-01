@@ -14,10 +14,10 @@ public class ContactModificationTests extends TestBase{
       app.getContactHelper().createContact(new ContactData("name", "name2", "89231260083", "test@mail.ru"));
     }
     List<ContactData> before =app.getContactHelper().getContactList();
-    app.getNavigationHelper().initContactModification(before.size()-1);
+    app.goTo().initContactModification(before.size()-1);
     ContactData contact = new ContactData(before.get(before.size()-1).getId(),"test1", "test2", "2256", "mgm@mail.ru");//сохранение старого идентификатора
     app.getContactHelper().fillContactForm(contact);
-    app.getNavigationHelper().submitContactModification();
+    app.goTo().submitContactModification();
     app.getContactHelper().returnToContactPage();
     List <ContactData> after =app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(),before.size());
