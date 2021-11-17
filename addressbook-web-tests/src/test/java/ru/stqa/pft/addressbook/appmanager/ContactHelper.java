@@ -8,6 +8,8 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.stqa.pft.addressbook.tests.TestBase.app;
+
 public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
@@ -22,11 +24,18 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
+  public void modifyContact(int index, ContactData contact) {
+    app.goTo().initContactModification(index);
+    fillContactForm(contact);
+    app.goTo().submitContactModification();
+    returnToContactPage();
+  }
+
   public void fillContactForm(ContactData contactData) {
-    type(By.name("firstname"),contactData.getFirstname() );
-    type(By.name("lastname"),contactData.getLastname());
-    type(By.name("mobile"),contactData.getMobile());
-    type(By.name("email"),contactData.getEmail());
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("mobile"), contactData.getMobile());
+    type(By.name("email"), contactData.getEmail());
   }
 
   public void gotoAddNewPage() {
@@ -52,8 +61,8 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List <WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements){
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       int lastNameNum = 1;
       int firstNameNum = 2;
