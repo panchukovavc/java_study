@@ -5,8 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static ru.stqa.pft.addressbook.tests.TestBase.app;
 
@@ -42,15 +43,15 @@ public class ContactHelper extends HelperBase {
     returnToContactPage();
   }
 
-  public void modify(int index, ContactData contact) {
-    app.goTo().initContactModification(index);
+  public void modify(ContactData contact) {
+    app.goTo().initContactModificationById(contact.getId());
     fillContactForm(contact);
     app.goTo().submitContactModification();
     returnToContactPage();
   }
 
-  public void delete(int index) {
-    app.goTo().selectContact(index);
+  public void delete(ContactData contact) {
+    app.goTo().selectContactById(contact.getId());
     app.goTo().deleteSelectContact();
     app.goTo().closeAlert();
     app.goTo().gotoHomePage();
@@ -58,15 +59,14 @@ public class ContactHelper extends HelperBase {
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
-
   }
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
@@ -79,4 +79,6 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
+
 }
